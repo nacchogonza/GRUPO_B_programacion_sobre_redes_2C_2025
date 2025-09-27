@@ -1,0 +1,246 @@
+/* Importar tipografías de Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Poppins:wght@400;600&display=swap");
+
+:root {
+  --font-primary: "Montserrat", sans-serif;
+  --font-tech: "Poppins", sans-serif;
+  --dark-bg-start: #1a202c;
+  --dark-bg-end: #2d3748;
+  --light-bg-start: #f7fafc;
+  --light-bg-end: #edf2f7;
+  --text-light: #e2e8f0;
+  --text-dark: #2d3748;
+  --accent-blue: #3182ce;
+  --accent-purple: #805ad5;
+  --button-hover: #4c51bf;
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-primary);
+  scroll-behavior: smooth;
+  color: var(--text-dark);
+}
+
+.landing-container {
+  overflow-x: hidden;
+}
+
+.section {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+
+  /* overflow-y: auto; /* Permite el scroll vertical si el contenido se excede */
+
+  /* Estilos para el fondo de imagen */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; /* Esta propiedad es clave */
+}
+
+.section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4); /* Color y opacidad del overlay */
+  z-index: 1; /* Asegura que el overlay esté encima de la imagen */
+}
+
+.dark-section {
+  color: var(--text-light);
+  /* Combinar la imagen de fondo con el degradado */
+  background: linear-gradient(45deg, var(--dark-bg-start), var(--dark-bg-end)),
+    url("/dark-section.png");
+  background-blend-mode: overlay; /* La imagen se mezcla con el degradado */
+}
+
+.light-section {
+  color: var(--text-dark);
+  /* Combinar la imagen de fondo con el degradado */
+  background: linear-gradient(45deg, var(--light-bg-start), var(--light-bg-end)),
+    url("/light-section.png");
+  background-blend-mode: soft-light; /* La imagen se mezcla con el degradado */
+}
+
+.light-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.5); /* Blanco semi-transparente */
+  z-index: 1;
+}
+
+.content {
+  width: 100%;
+  max-width: 2200px;
+  padding: 0 4rem;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 10;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 1s forwards cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.content {
+  width: 100%;
+  max-width: 1200px;
+  position: relative;
+  z-index: 2; /* Mayor que el z-index del overlay */
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 1s forwards cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Títulos y texto */
+h2 {
+  font-family: var(--font-tech);
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  letter-spacing: -1px;
+}
+
+h3 {
+  font-family: var(--font-tech);
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  letter-spacing: -1px;
+}
+
+p {
+  font-family: var(--font-primary);
+  font-size: 1.3rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+/* Botones con estilo futurista */
+button {
+  background-image: linear-gradient(
+    45deg,
+    var(--accent-blue),
+    var(--accent-purple)
+  );
+  color: var(--text-light);
+  border: none;
+  padding: 1rem 2.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin: 0 0.75rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.navigation-buttons {
+  margin-top: 2.5rem;
+}
+
+.video-limiter {
+  max-width: 700px; 
+  margin: 2rem auto 0 auto;
+  width: 100%;
+}
+
+.video-container {
+  position: relative;
+  width: 100%;
+  
+  padding-bottom: 56.25%; 
+  height: 0;
+  overflow: hidden;
+  
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.network-traffic-container {
+  margin: 1rem auto;
+  width: 60%;
+  max-height: 400px;
+}
+
+/* Media query para dispositivos con un ancho máximo de 768px (móviles y tablets pequeñas) */
+@media (max-width: 768px) {
+  /* Reducir el tamaño de la fuente para mejorar la legibilidad */
+  h2 {
+    font-size: 1.7rem;
+    line-height: 1.2;
+  }
+
+  h3 {
+    font-size: 1.1rem;
+    line-height: 1.2;
+  }
+
+  p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  /* Ajustar el padding horizontal para dejar más espacio a los lados */
+  .content {
+    padding: 0 2rem;
+  }
+
+  /* Hacer que los botones se vean mejor en pantallas pequeñas */
+  button {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
+    margin: 0.5rem; /* Ajustar el margen entre botones */
+  }
+
+  /* Acomodar los botones de navegación en una columna */
+  .navigation-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem; /* Espacio entre los botones */
+  }
+
+  .network-traffic-container {
+    margin: 1rem auto;
+    width: 100%;
+  
+  }
+}
